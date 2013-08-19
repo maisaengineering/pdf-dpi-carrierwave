@@ -1,0 +1,16 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @document.name
+
+= link_to 'Edit', edit_document_path(@document)
+
+= link_to 'Thumb', @document.source.url(:thumb) ,target: '_blank'
+= link_to 'BW-PDF', @document.source.url(:bw_pdf) ,target: '_blank'
+= link_to 'Color-PDF', @document.source.url(:converted_pdf) ,target: '_blank'
+= link_to 'Orginal', @document.source.url ,target: '_blank'
+
+-#=  image_tag(@document.source.url)
+\|
+= link_to 'Back', documents_path

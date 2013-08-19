@@ -1,0 +1,44 @@
+defaults: &defaults
+  #use_activesupport_time_zone: true
+  #use_utc: false
+  #host: localhost
+  # allow_dynamic_fields: false
+  # slaves:
+  #   - host: slave1.local
+  #     port: 27018
+  #   - host: slave2.local
+  #     port: 27019
+
+  use_activesupport_time_zone: true
+  use_utc: false
+  host: localhost
+  identity_map_enabled: true
+  pool_size: 35
+  pool_timeout: 10.0
+
+development:
+  <<: *defaults
+  sessions:
+    default:
+      database: pdf_dpi_dev
+      hosts:
+        - localhost:27017
+      options:
+
+test:
+  <<: *defaults
+  sessions:
+    default:
+      database: pdf_dpi_test
+      hosts:
+        - localhost:27017
+      options:
+        consistency: :strong
+        max_retries: 1
+        retry_interval: 0
+
+production:
+  <<: *defaults
+  sessions:
+    default:
+      uri: <%= ENV['MONGOHQ_URL'] %>

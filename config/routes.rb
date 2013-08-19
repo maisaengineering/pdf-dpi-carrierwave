@@ -1,4 +1,7 @@
 PdfDpiCarrierwave::Application.routes.draw do
+  resources :documents
+  match "/uploads/*path" => "gridfs#serve"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
